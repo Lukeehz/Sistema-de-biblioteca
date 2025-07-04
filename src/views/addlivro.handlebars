@@ -1,0 +1,123 @@
+<h2 class="text-center">Adicione um livro</h2>
+
+<section class="w-50 m-auto pt-3">
+  <form action="/livro/add" method="post">
+    <!-- Nome do livro -->
+    <div class="input-group flex-nowrap">
+      <label for="name" class="input-group-text">Livro</label>
+      <input
+        name="name"
+        id="name"
+        type="text"
+        class="form-control"
+        placeholder="Insira o nome do Livro"
+        required
+      />
+    </div>
+
+    <!-- Autor -->
+
+    <div class="input-group flex-nowrap pt-3">
+      <label for="author" class="input-group-text">Autor</label>
+      <input
+        name="author"
+        id="author"
+        type="text"
+        class="form-control"
+        placeholder="Insira o nome do autor"
+        required
+      />
+    </div>
+
+    <div class="input-group flex-nowrap pt-3">
+      <label for="genre" class="input-group-text">Gênero</label>
+      <input
+        name="genre"
+        id="genre"
+        type="text"
+        class="form-control"
+        placeholder="Insira o gênero do livro"
+        required
+      />
+    </div>
+
+    <div class="input-group flex-nowrap pt-3">
+      <label for="image" class="input-group-text">Imagem</label>
+      <input
+        name="image"
+        id="image"
+        type="text"
+        class="form-control"
+        placeholder="Insira o link da capa do livro"
+        required
+      />
+    </div>
+
+    <div class="input-group flex-nowrap pt-3">
+      <label for="rating" class="input-group-text">Nota</label>
+      <input
+        name="rating"
+        id="rating"
+        type="number"
+        class="form-control"
+        placeholder="Insira a nota do livro de 1 a 5"
+        min="1"
+        max="5"
+        required
+      />
+    </div>
+
+    <div class="input-group flex-nowrap pt-3">
+      <label class="input-group-text" for="format">Formato</label>
+      <select class="form-select" id="format" name="format" required>
+        <option selected value="fisico">Físico</option>
+        <option value="digital">Digital</option>
+        <option value="outros">Outros</option>
+      </select>
+    </div>
+
+        <div class="input-group flex-nowrap pt-3">
+      <label class="input-group-text" for="isBorrowed">Está emprestado?</label>
+      <select class="form-select" id="isBorrowed" name="isBorrowed" required>
+        <option selected value="0">Não</option>
+        <option value="1">Sim</option>
+      </select>
+    </div>
+
+<div class="input-group flex-nowrap pt-3" id="borrowedByWrapper">
+  <label for="borrowedBy" class="input-group-text">Para quem emprestou?</label>
+  <input
+    name="borrowedBy"
+    id="borrowedBy"
+    type="text"
+    class="form-control"
+    placeholder="Digite o nome da pessoa para quem você emprestou o livro"
+  />
+</div>
+
+
+    <div class="d-flex justify-content-center pt-3">
+      <button type="submit" class="btn btn-outline-primary">Enviar</button>
+    </div>
+  </form>
+
+</section>
+
+<script>
+    const isBorrowedSelect = document.getElementById('isBorrowed');
+  const borrowedByWrapper = document.getElementById('borrowedByWrapper');
+  const borrowedByInput = document.getElementById('borrowedBy');
+
+  function toggleBorrowedBy() {
+    if (isBorrowedSelect.value === '1') {
+      borrowedByWrapper.style.display = 'flex';
+    } else {
+      borrowedByWrapper.style.display = 'none';
+      borrowedByInput.required = false; 
+      borrowedByInput.value = '';
+    }
+  }
+
+  isBorrowedSelect.addEventListener('change', toggleBorrowedBy);
+  toggleBorrowedBy();
+</script>
