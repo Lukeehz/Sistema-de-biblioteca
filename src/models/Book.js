@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db/conn");
 
-const Library = db.define("Library", {
+const Book = db.define("Book", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -12,10 +12,6 @@ const Library = db.define("Library", {
   },
   image: {
     type: DataTypes.STRING,
-    allowNull: false,
-  },
-  genre: {
-    type: DataTypes.TEXT,
     allowNull: false,
   },
   rating: {
@@ -37,4 +33,4 @@ const Library = db.define("Library", {
   
 });
 
-module.exports = Library;
+module.exports = Book;

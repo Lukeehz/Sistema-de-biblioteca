@@ -1,7 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const conn = require("./src/db/conn");
-const Library = require("./src/models/Library");
+const Library = require("./src/models/Book");
 const { handlebars } = require("express-hbs");
 const path = require("path");
 const rotas = require("./src/router/index");
