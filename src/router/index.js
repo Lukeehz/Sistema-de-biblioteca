@@ -2,7 +2,7 @@ const express = require ("express");
 const app = express()
 const exphbs = require ("express-handlebars");
 const conn = require("../db/conn");
-const Library = require ("../models/Library");
+const Library = require ("../models/Book");
 const { handlebars } = require("express-hbs");
 const path = require("path");
 const router = express.Router()
@@ -15,23 +15,40 @@ app.use(
 
 app.use(express.json());
 
-router.post("/add", async (req,res)=>{
-    const name = req.body.name
-    const author = req.body.author
-    const image = req.body.image
-    const genre = req.body.genre
-    const rating = req.body.rating
-    const format = req.body.format
-    const isBorrowed = req.body.isBorrowed
-    const borrowedBy = req.body.borrowedBy
+router.post("/add", async (req, res) => {
+  const {
+    name,
+    author,
+    image,
+    rating,
+    format,
+    isBorrowed,
+    borrowedBy,
+  } = req.body;
 
-    console.log(req.body)
-    console.log("Chegou até aqui")
+  let genres = req.body.genres || [];
 
-    await Library.create({name,author,image, genre,rating, format,isBorrowed,borrowedBy})
-    res.redirect("/")
+  if (!Array.isArray(genres)) {
+    genres = [genres];
+  }
 
-})
+  console.log("Genres recebidos:", req.body.genres);
+
+
+  const newBook = await Library.create({
+    name,
+    author,
+    image,
+    genre: JSON.stringify(genres),
+    rating,
+    format,
+    isBorrowed: !!parseInt(isBorrowed),
+    borrowedBy: borrowedBy || null,
+  });
+
+  res.redirect("/livro/add");
+});
+
 
 router.get("/add", (req,res)=>{
     res.render("addlivro.handlebars")

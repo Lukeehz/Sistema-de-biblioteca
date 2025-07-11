@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db/conn");
 
-const Library = db.define("Library", {
+const Book = db.define("Book", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -25,16 +25,14 @@ const Library = db.define("Library", {
     type: DataTypes.STRING,
   },
   isBorrowed: {
-  type: DataTypes.BOOLEAN,
-  allowNull: false,
-  defaultValue: false,
-},
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
   borrowedBy: {
     type: DataTypes.STRING,
-    allowNull: true
-  }
-
-  
+    allowNull: true,
+  },
 });
 
-module.exports = Library;
+module.exports = Book;

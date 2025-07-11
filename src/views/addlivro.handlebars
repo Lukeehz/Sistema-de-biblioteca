@@ -16,7 +16,6 @@
     </div>
 
     <!-- Autor -->
-
     <div class="input-group flex-nowrap pt-3">
       <label for="author" class="input-group-text">Autor</label>
       <input
@@ -29,18 +28,40 @@
       />
     </div>
 
-    <div class="input-group flex-nowrap pt-3">
-      <label for="genre" class="input-group-text">Gênero</label>
-      <input
-        name="genre"
-        id="genre"
-        type="text"
-        class="form-control"
-        placeholder="Insira o gênero do livro"
-        required
-      />
+    <!-- Gêneros -->
+    <div class="pt-3">
+      <label class="form-label">Gêneros</label>
+      <div id="genres-container">
+        <div class="input-group flex-nowrap genre-select">
+          <select name="genres[]" class="form-select genre" required>
+            <option disabled selected value="">Selecione um gênero</option>
+            <option value="Romance">Romance</option>
+            <option value="Ficção Científica">Ficção Científica</option>
+            <option value="Fantasia">Fantasia</option>
+            <option value="Aventura">Aventura</option>
+            <option value="Terror">Terror</option>
+            <option value="Suspense">Suspense</option>
+            <option value="Policial">Policial</option>
+            <option value="Drama">Drama</option>
+            <option value="Biografia">Biografia</option>
+            <option value="História">História</option>
+            <option value="Autoajuda">Autoajuda</option>
+            <option value="Ensaios">Ensaios</option>
+            <option value="Poesia">Poesia</option>
+            <option value="Humor">Humor</option>
+            <option value="Mangá">Mangá</option>
+            <option value="HQ">HQ</option>
+            <option value="Infantil">Infantil</option>
+            <option value="Juvenil">Juvenil</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" id="add-genre" class="btn btn-sm btn-outline-secondary mt-2">
+        Adicionar outro gênero
+      </button>
     </div>
 
+    <!-- Imagem -->
     <div class="input-group flex-nowrap pt-3">
       <label for="image" class="input-group-text">Imagem</label>
       <input
@@ -53,6 +74,7 @@
       />
     </div>
 
+    <!-- Nota -->
     <div class="input-group flex-nowrap pt-3">
       <label for="rating" class="input-group-text">Nota</label>
       <input
@@ -67,6 +89,7 @@
       />
     </div>
 
+    <!-- Formato -->
     <div class="input-group flex-nowrap pt-3">
       <label class="input-group-text" for="format">Formato</label>
       <select class="form-select" id="format" name="format" required>
@@ -76,7 +99,8 @@
       </select>
     </div>
 
-        <div class="input-group flex-nowrap pt-3">
+    <!-- Emprestado -->
+    <div class="input-group flex-nowrap pt-3">
       <label class="input-group-text" for="isBorrowed">Está emprestado?</label>
       <select class="form-select" id="isBorrowed" name="isBorrowed" required>
         <option selected value="0">Não</option>
@@ -84,40 +108,21 @@
       </select>
     </div>
 
-<div class="input-group flex-nowrap pt-3" id="borrowedByWrapper">
-  <label for="borrowedBy" class="input-group-text">Para quem emprestou?</label>
-  <input
-    name="borrowedBy"
-    id="borrowedBy"
-    type="text"
-    class="form-control"
-    placeholder="Digite o nome da pessoa para quem você emprestou o livro"
-  />
-</div>
-
+    <!-- Para quem emprestou -->
+    <div class="input-group flex-nowrap pt-3" id="borrowedByWrapper">
+      <label for="borrowedBy" class="input-group-text">Para quem emprestou?</label>
+      <input
+        name="borrowedBy"
+        id="borrowedBy"
+        type="text"
+        class="form-control"
+        placeholder="Digite o nome da pessoa para quem você emprestou o livro"
+      />
+    </div>
 
     <div class="d-flex justify-content-center pt-3">
       <button type="submit" class="btn btn-outline-primary">Enviar</button>
     </div>
   </form>
-
 </section>
-
-<script>
-    const isBorrowedSelect = document.getElementById('isBorrowed');
-  const borrowedByWrapper = document.getElementById('borrowedByWrapper');
-  const borrowedByInput = document.getElementById('borrowedBy');
-
-  function toggleBorrowedBy() {
-    if (isBorrowedSelect.value === '1') {
-      borrowedByWrapper.style.display = 'flex';
-    } else {
-      borrowedByWrapper.style.display = 'none';
-      borrowedByInput.required = false; 
-      borrowedByInput.value = '';
-    }
-  }
-
-  isBorrowedSelect.addEventListener('change', toggleBorrowedBy);
-  toggleBorrowedBy();
-</script>
+<script src="/js/addbook.js"></script>
