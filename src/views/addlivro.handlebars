@@ -5,27 +5,13 @@
     <!-- Nome do livro -->
     <div class="input-group flex-nowrap">
       <label for="name" class="input-group-text">Livro</label>
-      <input
-        name="name"
-        id="name"
-        type="text"
-        class="form-control"
-        placeholder="Insira o nome do Livro"
-        required
-      />
+      <input name="name" id="name" type="text" class="form-control" placeholder="Insira o nome do Livro" required />
     </div>
 
     <!-- Autor -->
     <div class="input-group flex-nowrap pt-3">
       <label for="author" class="input-group-text">Autor</label>
-      <input
-        name="author"
-        id="author"
-        type="text"
-        class="form-control"
-        placeholder="Insira o nome do autor"
-        required
-      />
+      <input name="author" id="author" type="text" class="form-control" placeholder="Insira o nome do autor" required />
     </div>
 
     <!-- Gêneros -->
@@ -56,37 +42,19 @@
           </select>
         </div>
       </div>
-      <button type="button" id="add-genre" class="btn btn-sm btn-outline-secondary mt-2">
-        Adicionar outro gênero
-      </button>
+      <button type="button" id="add-genre" class="btn btn-sm btn-outline-secondary mt-2">Adicionar outro gênero</button>
     </div>
 
     <!-- Imagem -->
     <div class="input-group flex-nowrap pt-3">
       <label for="image" class="input-group-text">Imagem</label>
-      <input
-        name="image"
-        id="image"
-        type="text"
-        class="form-control"
-        placeholder="Insira o link da capa do livro"
-        required
-      />
+      <input name="image" id="image" type="text" class="form-control" placeholder="Insira o link da capa do livro" required />
     </div>
 
     <!-- Nota -->
     <div class="input-group flex-nowrap pt-3">
       <label for="rating" class="input-group-text">Nota</label>
-      <input
-        name="rating"
-        id="rating"
-        type="number"
-        class="form-control"
-        placeholder="Insira a nota do livro de 1 a 5"
-        min="1"
-        max="5"
-        required
-      />
+      <input name="rating" id="rating" type="number" class="form-control" placeholder="Insira a nota do livro de 1 a 5" min="1" max="5" required />
     </div>
 
     <!-- Formato -->
@@ -111,13 +79,7 @@
     <!-- Para quem emprestou -->
     <div class="input-group flex-nowrap pt-3" id="borrowedByWrapper">
       <label for="borrowedBy" class="input-group-text">Para quem emprestou?</label>
-      <input
-        name="borrowedBy"
-        id="borrowedBy"
-        type="text"
-        class="form-control"
-        placeholder="Digite o nome da pessoa para quem você emprestou o livro"
-      />
+      <input name="borrowedBy" id="borrowedBy" type="text" class="form-control" placeholder="Digite o nome da pessoa para quem você emprestou o livro" />
     </div>
 
     <div class="d-flex justify-content-center pt-3">
@@ -125,4 +87,5 @@
     </div>
   </form>
 </section>
+
 <script src="/js/addbook.js"></script>

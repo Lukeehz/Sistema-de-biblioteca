@@ -15,40 +15,38 @@ app.use(
 
 app.use(express.json());
 
-router.post("/add", async (req, res) => {
-  const {
-    name,
-    author,
-    image,
-    rating,
-    format,
-    isBorrowed,
-    borrowedBy,
-  } = req.body;
+router.post("/add", async (req,res)=>{
 
-  let genres = req.body.genres || [];
+    const {
+      name,
+      author,
+      image,
+      rating,
+      format,
+      isBorrowed,
+      borrowedBy,
+    } = req.body
 
-  if (!Array.isArray(genres)) {
-    genres = [genres];
-  }
+    let genre = req.body.genres || []
 
-  console.log("Genres recebidos:", req.body.genres);
-
+      if(!Array.isArray(genres)){
+    genres = [genres]
+  
 
   const newBook = await Library.create({
     name,
     author,
     image,
-    genre: JSON.stringify(genres),
+    genre: JSON.stringify(genre),
     rating,
     format,
     isBorrowed: !!parseInt(isBorrowed),
-    borrowedBy: borrowedBy || null,
+    borrowedBy: borrowedBy || null
   });
 
-  res.redirect("/livro/add");
-});
-
+  res.redirect("/add")
+  }
+})
 
 router.get("/add", (req,res)=>{
     res.render("addlivro.handlebars")
