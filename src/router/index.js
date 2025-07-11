@@ -15,38 +15,36 @@ app.use(
 
 app.use(express.json());
 
-router.post("/add", async (req,res)=>{
+router.post("/add", async (req, res) => {
+  const {
+    name,
+    author,
+    image,
+    rating,
+    format,
+    isBorrowed,
+    borrowedBy,
+  } = req.body;
 
-    const {
-      name,
-      author,
-      image,
-      rating,
-      format,
-      isBorrowed,
-      borrowedBy,
-    } = req.body
+  let genres = req.body.genres || [];
 
-    let genre = req.body.genres || []
-
-      if(!Array.isArray(genres)){
-    genres = [genres]
-  
+  if (!Array.isArray(genres)) {
+    genres = [genres];
+  }
 
   const newBook = await Library.create({
     name,
     author,
     image,
-    genre: JSON.stringify(genre),
+    genre: JSON.stringify(genres), // JSON.stringify, não 'genre'
     rating,
     format,
     isBorrowed: !!parseInt(isBorrowed),
-    borrowedBy: borrowedBy || null
+    borrowedBy: borrowedBy || null,
   });
 
-  res.redirect("/add")
-  }
-})
+  res.redirect("/livro/add");
+});
 
 router.get("/add", (req,res)=>{
     res.render("addlivro.handlebars")
