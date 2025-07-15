@@ -1,18 +1,40 @@
-<h1>
-    Todos os livros
+<h1 class="text-center my-4">
+  Todos os Livros
 </h1>
 
-<section>
+<section class="container">
+  <div class="row g-4">
     {{#each livro}}
-    <div>
-        <h2>{{this.name}}</h2>
-        <h2>{{this.author}}</h2>
-        <img src="{{this.image}}" alt="">
-        <h2>{{this.genre}}</h2>
-        <h2>{{this.rating}}</h2>
-        <h2>{{this.format}}</h2>
-        <h2>{{this.isBorrowed}}</h2>
-        <h2>{{this.borrowedBy}}</h2>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}" style="object-fit: cover; height: 250px;">
+        <div class="card-body">
+          <!-- ID do livro -->
+          <h6 class="text-muted mb-2">
+            <span class="badge bg-secondary">ID: {{this.id}}</span>
+          </h6>
+
+          <h5 class="card-title">{{this.name}}</h5>
+          <p class="card-text"><strong>Autor:</strong> {{this.author}}</p>
+          <p class="card-text"><strong>Gênero:</strong> {{this.genre}}</p>
+          <p class="card-text"><strong>Avaliação:</strong> {{this.rating}}</p>
+          <p class="card-text"><strong>Formato:</strong> {{this.format}}</p>
+
+          {{#if this.adress}}
+          <p class="card-text"><strong>📍 Endereço:</strong> {{this.adress}}</p>
+          {{/if}}
+
+          <p class="card-text">
+            <strong>Status:</strong>
+            {{#if this.isBorrowed}}
+              Emprestado para {{this.borrowedBy}}
+            {{else}}
+              Disponível
+            {{/if}}
+          </p>
+        </div>
+      </div>
     </div>
     {{/each}}
+  </div>
 </section>

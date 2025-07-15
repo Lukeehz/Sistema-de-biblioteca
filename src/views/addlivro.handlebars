@@ -1,24 +1,25 @@
-<h2 class="text-center">Adicione um livro</h2>
+<h2 class="text-center my-4">📚 Adicione um Livro</h2>
 
-<section class="w-50 m-auto pt-3">
-  <form action="/livro/add" method="post">
+<section class="container">
+  <form action="/livro/add" method="post" class="mx-auto p-4 rounded-4 shadow-sm bg-light" style="max-width: 700px;">
+    
     <!-- Nome do livro -->
-    <div class="input-group flex-nowrap">
-      <label for="name" class="input-group-text">Livro</label>
+    <div class="mb-3">
+      <label for="name" class="form-label fw-semibold">📖 Nome do Livro</label>
       <input name="name" id="name" type="text" class="form-control" placeholder="Insira o nome do Livro" required />
     </div>
 
     <!-- Autor -->
-    <div class="input-group flex-nowrap pt-3">
-      <label for="author" class="input-group-text">Autor</label>
+    <div class="mb-3">
+      <label for="author" class="form-label fw-semibold">✍️ Autor</label>
       <input name="author" id="author" type="text" class="form-control" placeholder="Insira o nome do autor" required />
     </div>
 
     <!-- Gêneros -->
-    <div class="pt-3">
-      <label class="form-label">Gêneros</label>
+    <div class="mb-3">
+      <label class="form-label fw-semibold">🏷️ Gêneros</label>
       <div id="genres-container">
-        <div class="input-group flex-nowrap genre-select">
+        <div class="input-group mb-2 genre-select">
           <select name="genres[]" class="form-select genre" required>
             <option disabled selected value="">Selecione um gênero</option>
             <option value="Romance">Romance</option>
@@ -42,24 +43,24 @@
           </select>
         </div>
       </div>
-      <button type="button" id="add-genre" class="btn btn-sm btn-outline-secondary mt-2">Adicionar outro gênero</button>
+      <button type="button" id="add-genre" class="btn btn-outline-secondary btn-sm mt-2">+ Adicionar outro gênero</button>
     </div>
 
     <!-- Imagem -->
-    <div class="input-group flex-nowrap pt-3">
-      <label for="image" class="input-group-text">Imagem</label>
-      <input name="image" id="image" type="text" class="form-control" placeholder="Insira o link da capa do livro" required />
+    <div class="mb-3">
+      <label for="image" class="form-label fw-semibold">🖼️ URL da Imagem</label>
+      <input name="image" id="image" type="text" class="form-control" placeholder="Link da capa do livro" required />
     </div>
 
     <!-- Nota -->
-    <div class="input-group flex-nowrap pt-3">
-      <label for="rating" class="input-group-text">Nota</label>
-      <input name="rating" id="rating" type="number" class="form-control" placeholder="Insira a nota do livro de 1 a 5" min="1" max="5" required />
+    <div class="mb-3">
+      <label for="rating" class="form-label fw-semibold">⭐ Nota (1 a 5)</label>
+      <input name="rating" id="rating" type="number" class="form-control" min="1" max="5" placeholder="Nota do livro" required />
     </div>
 
     <!-- Formato -->
-    <div class="input-group flex-nowrap pt-3">
-      <label class="input-group-text" for="format">Formato</label>
+    <div class="mb-3">
+      <label for="format" class="form-label fw-semibold">📦 Formato</label>
       <select class="form-select" id="format" name="format" required>
         <option selected value="fisico">Físico</option>
         <option value="digital">Digital</option>
@@ -67,9 +68,9 @@
       </select>
     </div>
 
-    <!-- Emprestado -->
-    <div class="input-group flex-nowrap pt-3">
-      <label class="input-group-text" for="isBorrowed">Está emprestado?</label>
+    <!-- Está emprestado -->
+    <div class="mb-3">
+      <label for="isBorrowed" class="form-label fw-semibold">📤 Está emprestado?</label>
       <select class="form-select" id="isBorrowed" name="isBorrowed" required>
         <option selected value="0">Não</option>
         <option value="1">Sim</option>
@@ -77,15 +78,23 @@
     </div>
 
     <!-- Para quem emprestou -->
-    <div class="input-group flex-nowrap pt-3" id="borrowedByWrapper">
-      <label for="borrowedBy" class="input-group-text">Para quem emprestou?</label>
-      <input name="borrowedBy" id="borrowedBy" type="text" class="form-control" placeholder="Digite o nome da pessoa para quem você emprestou o livro" />
+    <div class="mb-3" id="borrowedByWrapper">
+      <label for="borrowedBy" class="form-label fw-semibold">👤 Para quem emprestou?</label>
+      <input name="borrowedBy" id="borrowedBy" type="text" class="form-control" placeholder="Nome da pessoa" />
     </div>
 
-    <div class="d-flex justify-content-center pt-3">
-      <button type="submit" class="btn btn-outline-primary">Enviar</button>
+    <!-- Endereço -->
+    <div class="mb-3">
+      <label for="adress" class="form-label fw-semibold">📍 Endereço</label>
+      <input name="adress" id="adress" type="text" class="form-control" placeholder="Onde o livro está guardado? (Ex: Estante do quarto)" />
+    </div>
+
+    <!-- Botão -->
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary">📥 Enviar</button>
     </div>
   </form>
 </section>
 
 <script src="/js/addbook.js"></script>
+<script src="/js/script.js"></script>

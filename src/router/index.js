@@ -24,6 +24,7 @@ router.post("/add", async (req, res) => {
     format,
     isBorrowed,
     borrowedBy,
+    adress
   } = req.body;
 
   let genres = req.body.genres || [];
@@ -41,6 +42,7 @@ router.post("/add", async (req, res) => {
     format,
     isBorrowed: !!parseInt(isBorrowed),
     borrowedBy: borrowedBy || null,
+    adress
   });
 
   res.redirect("/livro/add");

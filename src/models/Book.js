@@ -33,6 +33,9 @@ const Book = db.define("Book", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  adress:{
+    type: DataTypes.STRING,
+  }
 });
 
 module.exports = Book;
