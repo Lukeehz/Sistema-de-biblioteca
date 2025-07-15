@@ -50,4 +50,11 @@ router.get("/add", (req,res)=>{
     res.render("addlivro.handlebars")
 })
 
+router.get("/",  async (req,res)=>{
+  const livro = await Library.findAll({raw:true})
+  console.log(livro)
+  res.render("book", {livro: livro})
+
+})
+
 module.exports = router

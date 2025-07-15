@@ -1,0 +1,18 @@
+<h1>
+    Todos os livros
+</h1>
+
+<section>
+    {{#each livro}}
+    <div>
+        <h2>{{this.name}}</h2>
+        <h2>{{this.author}}</h2>
+        <img src="{{this.image}}" alt="">
+        <h2>{{this.genre}}</h2>
+        <h2>{{this.rating}}</h2>
+        <h2>{{this.format}}</h2>
+        <h2>{{this.isBorrowed}}</h2>
+        <h2>{{this.borrowedBy}}</h2>
+    </div>
+    {{/each}}
+</section>

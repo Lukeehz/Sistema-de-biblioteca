@@ -30,7 +30,9 @@ app.get("/helloworld", (req, res) => {
 
 app.use("/livro", rotas);
 
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => {
+  res.redirect("/livro")
+});
 
 conn
   .sync()
