@@ -1,29 +1,67 @@
-<h1 class="text-center my-4">
-  Todos os Livros
-</h1>
+<h1 class="text-center my-4">Todos os Livros</h1>
 
+<!-- Barra de Pesquisa -->
+<section class="container mb-4">
+  <form class="d-flex" role="search" method="GET" action="/">
+    <input
+      id="searchInput"
+      class="form-control me-2"
+      type="search"
+      placeholder="Pesquisar por nome, autor, gênero ou ID"
+      aria-label="Pesquisar"
+      name="q"
+      value="{{q}}"
+    />
+    <button class="btn btn-outline-primary" type="submit">🔍 Buscar</button>
+  </form>
+</section>
+
+<!-- Lista de Livros -->
 <section class="container">
   <div class="row g-4">
     {{#each livro}}
     <div class="col-md-4">
       <div class="card h-100 shadow-sm">
-        <img src="{{this.image}}" class="card-img-top" alt="{{this.name}}" style="object-fit: cover; height: 250px;">
+        <img
+          src="{{this.image}}"
+          class="card-img-top"
+          alt="{{this.name}}"
+          style="object-fit: cover; height: 250px;"
+        />
         <div class="card-body">
-          <!-- ID do livro -->
+
+          <!-- ID -->
           <h6 class="text-muted mb-2">
             <span class="badge bg-secondary">ID: {{this.id}}</span>
           </h6>
 
+          <!-- Dados do livro -->
           <h5 class="card-title">{{this.name}}</h5>
           <p class="card-text"><strong>Autor:</strong> {{this.author}}</p>
-          <p class="card-text"><strong>Gênero:</strong> {{this.genre}}</p>
+
+          <!-- Gênero (removendo aspas e colchetes manualmente) -->
+          <p class="card-text">
+            <strong>Gênero:</strong>
+            {{#if this.genre}}
+              {{this.genre
+                (replace "[" "")
+                (replace "]" "")
+                (replaceAll "\"" "")
+              }}
+            {{/if}}
+          </p>
+
           <p class="card-text"><strong>Avaliação:</strong> {{this.rating}}</p>
           <p class="card-text"><strong>Formato:</strong> {{this.format}}</p>
 
-          {{#if this.adress}}
-          <p class="card-text"><strong>📍 Endereço:</strong> {{this.adress}}</p>
-          {{/if}}
+          <!-- Endereço (somente se não estiver emprestado) -->
+          {{#unless this.isBorrowed}}
+            {{#if this.adress}}
+              <p class="card-text"><strong>📍 Endereço:</strong> {{this.adress}}</p>
+            {{/if}}
+          {{/unless}}
 
+          <!-- Status -->
           <p class="card-text">
             <strong>Status:</strong>
             {{#if this.isBorrowed}}
@@ -38,3 +76,5 @@
     {{/each}}
   </div>
 </section>
+
+<script src="/js/search.js"></script>
