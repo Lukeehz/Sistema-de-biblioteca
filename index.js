@@ -2,30 +2,31 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const path = require("path");
 const conn = require("./src/db/conn");
-const Library = require("./src/models/Book");
 const rotas = require("./src/router/index");
 
 require("dotenv").config();
 
 const app = express();
 
-// Registra helper para limpar colchetes e aspas do gênero
+// Handlebars + helpers
 const hbs = exphbs.create({
   helpers: {
     cleanGenres: function (genreStr) {
-      if (!genreStr) return '';
+      if (!genreStr) return "";
       try {
         const parsed = JSON.parse(genreStr);
         return Array.isArray(parsed) ? parsed.join(", ") : genreStr;
-      } catch (err) {
+      } catch {
         return genreStr.replace(/[\[\]"]+/g, "");
       }
-    }
+    },
+    ifEquals: function (arg1, arg2, options) {
+      return arg1 == arg2 ? options.fn(this) : options.inverse(this);
+    },
   },
   extname: ".handlebars",
-  defaultLayout: "main"
+  defaultLayout: "main",
 });
-
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
@@ -37,18 +38,12 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Rotas
-app.get("/helloworld", (req, res) => {
-  res.render("helloworld");
-});
-
 app.use("/livro", rotas);
 
-// Redireciona para /livro
 app.get("/", (req, res) => {
   res.redirect("/livro");
 });
 
-// Conexão com o banco
 conn
   .sync()
   .then(() => {

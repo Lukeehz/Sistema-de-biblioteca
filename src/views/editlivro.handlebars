@@ -1,0 +1,91 @@
+<h2 class="text-center my-4">Editar Livro</h2>
+
+<section class="container">
+  <!-- Formulário de edição -->
+  <form action="/livro/edit/{{livro.id}}" method="POST" class="mx-auto p-4 rounded-4 shadow-sm bg-light" style="max-width: 700px;">
+    
+    <!-- Nome do Livro (apenas leitura) -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">📖 Nome do Livro</label>
+      <input type="text" class="form-control" value="{{livro.name}}" readonly />
+    </div>
+
+    <!-- Autor (apenas leitura) -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">✍️ Autor</label>
+      <input type="text" class="form-control" value="{{livro.author}}" readonly />
+    </div>
+
+    <!-- Gêneros (apenas leitura) -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">🏷️ Gêneros</label>
+      <input type="text" class="form-control" value="{{cleanGenres livro.genre}}" readonly />
+    </div>
+
+    <!-- Imagem -->
+    <div class="mb-3">
+      <label for="image" class="form-label fw-semibold">🖼️ URL da Imagem</label>
+      <input name="image" id="image" type="text" class="form-control" value="{{livro.image}}" required />
+    </div>
+
+    <!-- Nota -->
+    <div class="mb-3">
+      <label for="rating" class="form-label fw-semibold">⭐ Nota (1 a 5)</label>
+      <input name="rating" id="rating" type="number" class="form-control" min="1" max="5" value="{{livro.rating}}" required />
+    </div>
+
+    <!-- Formato -->
+    <div class="mb-3">
+      <label for="format" class="form-label fw-semibold">📦 Formato</label>
+      <select class="form-select" id="format" name="format" required>
+        <option value="fisico" {{#ifEquals livro.format "fisico"}}selected{{/ifEquals}}>Físico</option>
+        <option value="digital" {{#ifEquals livro.format "digital"}}selected{{/ifEquals}}>Digital</option>
+        <option value="outros" {{#ifEquals livro.format "outros"}}selected{{/ifEquals}}>Outros</option>
+      </select>
+    </div>
+
+    <!-- Está emprestado -->
+    <div class="mb-3">
+      <label for="isBorrowed" class="form-label fw-semibold">📤 Está emprestado?</label>
+      <select class="form-select" id="isBorrowed" name="isBorrowed" required onchange="toggleBorrowedBy()">
+        <option value="0" {{#unless livro.isBorrowed}}selected{{/unless}}>Não</option>
+        <option value="1" {{#if livro.isBorrowed}}selected{{/if}}>Sim</option>
+      </select>
+    </div>
+
+    <!-- Para quem emprestou -->
+    <div class="mb-3" id="borrowedByWrapper" {{#unless livro.isBorrowed}}style="display: none;"{{/unless}}>
+      <label for="borrowedBy" class="form-label fw-semibold">👤 Para quem emprestou?</label>
+      <input name="borrowedBy" id="borrowedBy" type="text" class="form-control" value="{{livro.borrowedBy}}" />
+    </div>
+
+    <!-- Endereço -->
+    <div class="mb-3">
+      <label for="adress" class="form-label fw-semibold">📍 Endereço</label>
+      <input name="adress" id="adress" type="text" class="form-control" value="{{livro.adress}}" />
+    </div>
+
+    <!-- Botão de salvar -->
+    <div class="d-flex justify-content-center mb-3">
+      <button type="submit" class="btn btn-primary btn-lg">💾 Confirmar Alterações</button>
+    </div>
+  </form>
+
+  <!-- Deletar -->
+  <div class="text-center mt-4">
+    <div class="alert alert-warning d-inline-block" role="alert">
+      <strong>⚠️ Atenção:</strong> Esta ação não pode ser desfeita!
+    </div>
+    <br>
+    <form action="/livro/delete/{{livro.id}}" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar este livro? Esta ação não pode ser desfeita!')" style="display: inline;">
+      <button type="submit" class="btn btn-danger btn-lg">🗑️ Excluir Livro</button>
+    </form>
+  </div>
+
+  <!-- Voltar -->
+  <div class="text-center mt-3">
+    <a href="/livro" class="btn btn-secondary">← Voltar para Lista</a>
+  </div>
+</section>
+
+<script src="/js/script.js"></script>
