@@ -18,6 +18,10 @@ const Book = db.define("Book", {
     type: DataTypes.TEXT,
     allowNull: false,
   },
+  isbn: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
   rating: {
     type: DataTypes.INTEGER,
   },

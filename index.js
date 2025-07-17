@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 conn
   .sync()
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT , () => {
       console.log(`Server aberto na porta ${process.env.PORT}`);
     });
   })

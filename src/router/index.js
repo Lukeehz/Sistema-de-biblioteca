@@ -17,6 +17,7 @@ router.post("/add", async (req, res) => {
     name,
     author,
     image,
+    isbn,
     rating,
     format,
     isBorrowed,
@@ -34,6 +35,7 @@ router.post("/add", async (req, res) => {
     author,
     image,
     genre: JSON.stringify(genres),
+    isbn,
     rating,
     format,
     isBorrowed: !!parseInt(isBorrowed),
@@ -52,7 +54,7 @@ router.get("/edit/:id", async (req, res) => {
     const livro = await Library.findOne({ where: { id }, raw: true });
     if (!livro) return res.status(404).send("Livro não encontrado");
 
-    console.log("Livro encontrado:", livro); // Verifique se aparece no console
+    console.log("Livro encontrado:", livro);
 
     res.render("editlivro", { livro });
   } catch (err) {
