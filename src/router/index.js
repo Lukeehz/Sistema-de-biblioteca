@@ -3,7 +3,6 @@ const router = express.Router();
 const { Op } = require("sequelize");
 const Library = require("../models/Book");
 
-// Middleware para parsing do body
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
@@ -11,7 +10,6 @@ router.get("/add", (req, res) => {
   res.render("addlivro.handlebars");
 });
 
-// Cadastro de livro
 router.post("/add", async (req, res) => {
   const {
     name,
@@ -108,7 +106,6 @@ router.post("/edit/:id", async (req, res) => {
   }
 });
 
-// Rota para deletar livro
 router.post("/delete/:id", async (req, res) => {
   const bookId = req.params.id;
 
